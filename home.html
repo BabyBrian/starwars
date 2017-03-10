@@ -1,0 +1,187 @@
+<html>
+<head>
+	<LINK REL="stylesheet" TYPE="text/css" HREF="siteWeb.css">
+    <style type="text/css">
+        div {
+            border: solid yellow 5px;
+			border-radius: 10px;
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+            font-size: 1.3em;
+			color:white;
+        }
+
+        .selected {
+            color:white;
+        }
+		
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/javascript" src="react/react.js"></script>
+    <script type="text/javascript" src="react/JSXTransformer.js"></script>
+   <script type="text/javascript">
+    var count = 0;
+
+        var scoreOf = {};//creer une variable vide
+        var scoreIs = function(point) {
+            return function (letter) {
+                scoreOf[letter] = point;
+            };
+        };
+       
+    var letters = [ {
+  'author': 'Senator palpatine',
+  'quote': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
+  'quote1': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
+  'quote2': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
+  'quote3': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
+  'image': 'images/pal.jpg'
+}, {
+  'author': 'Count Dooku',
+  'quote': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
+  'quote1': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
+  'quote2': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
+  'quote3': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
+  'image': 'images/doku.jpg'
+}, {
+  'author': 'Darth vader',
+  'quote': 'Luke, you can destroy the Emperor. He has foreseen this. It is your destiny. Join me, and together we can rule the galaxy as father and son.',
+  'quote1': 'The Force is strong with this one.',
+  'quote2': 'The Force is strong with this one.',
+  'quote3': 'The Force is strong with this one.',
+  'image': 'images/vador.jpg'
+}, {
+  'author': 'Princess leila',
+  'quote': 'Aren\'t you a little short for a storm trooper?',
+  'quote1': 'Aren\'t you a little short for a storm trooper?',
+  'quote2': 'Aren\'t you a little short for a storm trooper?',
+  'quote3': 'Aren\'t you a little short for a storm trooper?',
+  'image': 'images/leia.jpg'
+}, {
+  'author': 'Qui-Gon Jinn',
+  'quote': 'Your focus determines your reality',
+  'quote1': 'Your focus determines your reality',
+  'quote2': 'Your focus determines your reality',
+  'quote3': 'Your focus determines your reality',
+  'image': 'images/qui.jpg'
+}, , {
+  'author': 'Obi-Wan-Kenobi',
+  'quote': 'In my experience there is no such thing as luck.',
+  'quote1': 'In my experience there is no such thing as luck.',
+  'quote2': 'In my experience there is no such thing as luck.',
+  'quote3': 'In my experience there is no such thing as luck.',
+  'image': 'images/obi.jpg'
+}, {
+  'author': 'Yoda',
+  'quote': 'If once you start down the dark side, forever will it dominate your destiney, consume you it will, as it did Obi-Wan\'s apprentice',
+  'quote1': 'Do. Or do not. There is no try.',
+  'quote2': 'Mmm. Lost a planet, Master Obi-Wan has. How embarrassing.',
+  'quote3': 'When 900 years old, you reach… Look as good, you will not.',
+  'image': 'images/yoda.jpg'
+  }];    
+//algo pour fusionner les differentes occurences            
+    </script>
+    
+    <script type="text/jsx">
+
+    var Tree =  React.createClass({
+        render : function () {
+            return (<div>
+                <Letters onLetterSelected={this.selectLetter}/>
+                <Score letter={this.state.letter}/>
+            </div>);
+        },
+
+        getInitialState : function() {
+            return{
+                letter : ''
+            }
+        },
+
+        selectLetter : function (newLetter) {
+            return this.setState({letter : newLetter});
+        }
+    });
+
+    var Letters = React.createClass({
+
+        render : function () {
+            var handler = this.props.onLetterSelected;
+
+            return (<div>
+                {letters.map(function(item) {//map a en attribut un predicat ou une fonction
+                    return <Letter itemValue={item} whenClick={handler} />;
+                })}
+            </div>);
+        },
+
+    });
+
+    var Letter = React.createClass({
+
+        render : function () {
+            var classname = this.state.selected ? 'selected' : '';
+            //la ou modifier les images (choix)
+            return (<div className={classname} onClick={this.handleClick}>{this.props.itemValue.author}</div>); 
+        },
+
+        getInitialState : function () {
+            return {selected : false };
+        },
+
+        handleClick : function () {
+            this.props.whenClick(this.props.itemValue);
+            this.setState({selected : true});
+        }
+    });
+              
+
+    var Score = React.createClass({
+
+        render : function () {
+            //mettre la boucle ici pour changer les quotes 
+            //on itere sur quote
+			if(count<=1){
+			 count = count + 1;
+			 return (<div>
+                la replique de {this.props.letter.author} est {this.props.letter.quote} 
+            </div>);
+			
+			}if(count===2){
+			 count = count + 1;
+			 return (<div>
+                la replique de {this.props.letter.author} est {this.props.letter.quote1} 
+            </div>);
+			}if(count===3){
+			 count = count + 1;
+			 return (<div>
+                la replique de {this.props.letter.author} est {this.props.letter.quote2} 
+            </div>);
+			}if(count===4){
+			 count = count + 1;
+			 return (<div>
+                la replique de {this.props.letter.author} est {this.props.letter.quote3} 
+            </div>);
+			}else{
+			count=1;
+			 return (<div>
+                la replique de {this.props.letter.author} est {this.props.letter.quote} 
+            </div>);
+			}
+           
+        },
+
+    });
+
+
+    React.render(<Tree />, document.getElementById('root'));
+
+    </script>
+</body>
+</html>
