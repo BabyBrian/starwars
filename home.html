@@ -1,187 +1,216 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<LINK REL="stylesheet" TYPE="text/css" HREF="siteWeb.css">
-    <style type="text/css">
-        div {
-            border: solid yellow 5px;
-			border-radius: 10px;
-            display: inline-block;
-            padding: 10px;
-            margin: 10px;
-            font-size: 1.3em;
-			color:white;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Star Wars Quote</title>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
 
-        .selected {
-            color:white;
-        }
-		
-    </style>
-</head>
-
-<body>
-
-    <div id="root"></div>
-
-    <script type="text/javascript" src="react/react.js"></script>
-    <script type="text/javascript" src="react/JSXTransformer.js"></script>
-   <script type="text/javascript">
-    var count = 0;
-
-        var scoreOf = {};//creer une variable vide
-        var scoreIs = function(point) {
-            return function (letter) {
-                scoreOf[letter] = point;
-            };
-        };
-       
-    var letters = [ {
-  'author': 'Senator palpatine',
-  'quote': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
-  'quote1': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
-  'quote2': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
-  'quote3': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.',
-  'image': 'images/pal.jpg'
-}, {
-  'author': 'Count Dooku',
-  'quote': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
-  'quote1': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
-  'quote2': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
-  'quote3': 'I sense great fear in you, Skywalker. You have hate… you have anger… but you don’t use them.',
-  'image': 'images/doku.jpg'
-}, {
-  'author': 'Darth vader',
-  'quote': 'Luke, you can destroy the Emperor. He has foreseen this. It is your destiny. Join me, and together we can rule the galaxy as father and son.',
-  'quote1': 'The Force is strong with this one.',
-  'quote2': 'The Force is strong with this one.',
-  'quote3': 'The Force is strong with this one.',
-  'image': 'images/vador.jpg'
-}, {
-  'author': 'Princess leila',
-  'quote': 'Aren\'t you a little short for a storm trooper?',
-  'quote1': 'Aren\'t you a little short for a storm trooper?',
-  'quote2': 'Aren\'t you a little short for a storm trooper?',
-  'quote3': 'Aren\'t you a little short for a storm trooper?',
-  'image': 'images/leia.jpg'
-}, {
-  'author': 'Qui-Gon Jinn',
-  'quote': 'Your focus determines your reality',
-  'quote1': 'Your focus determines your reality',
-  'quote2': 'Your focus determines your reality',
-  'quote3': 'Your focus determines your reality',
-  'image': 'images/qui.jpg'
-}, , {
-  'author': 'Obi-Wan-Kenobi',
-  'quote': 'In my experience there is no such thing as luck.',
-  'quote1': 'In my experience there is no such thing as luck.',
-  'quote2': 'In my experience there is no such thing as luck.',
-  'quote3': 'In my experience there is no such thing as luck.',
-  'image': 'images/obi.jpg'
-}, {
-  'author': 'Yoda',
-  'quote': 'If once you start down the dark side, forever will it dominate your destiney, consume you it will, as it did Obi-Wan\'s apprentice',
-  'quote1': 'Do. Or do not. There is no try.',
-  'quote2': 'Mmm. Lost a planet, Master Obi-Wan has. How embarrassing.',
-  'quote3': 'When 900 years old, you reach… Look as good, you will not.',
-  'image': 'images/yoda.jpg'
-  }];    
-//algo pour fusionner les differentes occurences            
-    </script>
+    <div class="header">
+      <img src="images/starwars.jpg"  />
+    </div>
     
-    <script type="text/jsx">
+    
+          <p> Choose your favorite character </p>
+  
+    <table>
+   <tr>
+       <td>
+          <div >
+            <img class="imagess" height = "300px" src="images/leia.jpg"/>
+          </div>
+          <div>
+            <button class="button" id="leia">Leia</button>
+          </div>
+	   </td>
+       <td>
+          <div >
+            <img class="imagess" height = "300px" src="images/vador.jpg"/>
+          </div>
+          <div>
+            <button class="button" id="darthvader">Darth Vader</button>
+        </div>
+	   </td>
+       <td>
+	    <div >
+          <img class="imagess" height = "300px"  src="images/yoda.jpg"/>
+        </div>
+        <div>
+          <button class="button" id="yoda">Yoda</button>
+      </div>
+	   </td>
+   </tr>
+   <tr>
+       <td>
+	    <div >
+          <img class="imagess" height = "300px"  src="images/yoda.jpg"/>
+        </div>
+        <div>
+          <button class="button" id="yoda">Yoda</button>
+      </div>
+	   </td>
+       <td>
+	    <div >
+        <img class="imagess" height = "300px" src="images/pal.jpg"/>
+      </div>
+      <div>
+        <button class="button" id="palpatine">Palpatine</button>
+    </div>
+	   </td>
+       <td>
+	   <div >
+          <img class="imagess" height = "300px" src="images/obi.jpg"/>
+        </div>
+        <div >
+          <button class="button" id="obiwan">Obi Wan</button>
+      </div>
+	   </td>
+   </tr>
+   <tr>
+      <td>
+	    <div >
+      <img class="imagess" height = "300px" src="images/doku.jpg"/>
+    </div>
+    <div >
+      <button class="button" id="dooku">Dooku</button>
+  </div>
+	   </td>
+       <td>
+	   <div >
+      <img class="imagess" height = "300px" src="images/qui.jpg"/>
+    </div>
+    <div >
+      <button class="button" id="qui1">Quigon-jhin</button>
+  </div>
+	   </td>
+	</tr>
+</table>
+	
+<div class="container">
+<h3 id="qcontainer"></h3>
+      <h3 id="acontainer" ></h3>
+      <button  id="random">Error</button>
 
-    var Tree =  React.createClass({
-        render : function () {
-            return (<div>
-                <Letters onLetterSelected={this.selectLetter}/>
-                <Score letter={this.state.letter}/>
-            </div>);
-        },
+    </div>
 
-        getInitialState : function() {
-            return{
-                letter : ''
-            }
-        },
+   <script type="text/babel">
+   
+   var quotes = [{
+      'author': '- Yoda',
+      'quote': 'When 900 years old, you reachâ€¦ Look as good, you will not.'
+    }, {
+      'author': '- Senator palpatine',
+      'quote': 'The Dark Side of the Force is the pathway to many abilities some consider to be.. Unnatural.'
+    }, {
+      'author': '- Count Dooku',
+      'quote': 'I sense great fear in you, Skywalker. You have hateâ€¦ you have angerâ€¦ but you donâ€™t use them.'
+    }, {
+      'author': '- Darth vader',
+      'quote': 'Luke, you can destroy the Emperor. He has foreseen this. It is your destiny. Join me, and together we can rule the galaxy as father and son.'
+    }, {
+      'author': '- Princess leila',
+      'quote': 'Aren\'t you a little short for a storm trooper?'
+    }, {
+      'author': '- Yoda',
+      'quote': 'Mmm. Lost a planet, Master Obi-Wan has. How embarrassing.'
+    }, {
+      'author': '- Qui-Gon Jinn',
+      'quote': 'Your focus determines your reality'
+    }, {
+      'author': '- Yoda',
+      'quote': 'Do. Or do not. There is no try.'
+    }, {
+      'author': '- Obi-Wan-Kenobi',
+      'quote': 'In my experience there is no such thing as luck.'
+    }, {
+      'author': '- Yoda',
+      'quote': 'If once you start down the dark side, forever will it dominate your destiney, consume you it will, as it did Obi-Wan\'s apprentice'
+    }, {
+      'author': '- Darth Vader',
+      'quote': 'The Force is strong with this one.'
+    }];
 
-        selectLetter : function (newLetter) {
-            return this.setState({letter : newLetter});
-        }
-    });
+	//pour generer de maniere aleatoire
+   function getrandquote()
+{
+  var randquote = Math.floor((Math.random() * quotes.length) + 1);
+  ReactDOM.render(<h2>{quotes[randquote].quote}</h2>, document.getElementById('qcontainer'));
+  ReactDOM.render(<h2>{quotes[randquote].author}</h2>, document.getElementById('acontainer'));
+}
 
-    var Letters = React.createClass({
-
-        render : function () {
-            var handler = this.props.onLetterSelected;
-
-            return (<div>
-                {letters.map(function(item) {//map a en attribut un predicat ou une fonction
-                    return <Letter itemValue={item} whenClick={handler} />;
-                })}
-            </div>);
-        },
-
-    });
-
-    var Letter = React.createClass({
-
-        render : function () {
-            var classname = this.state.selected ? 'selected' : '';
-            //la ou modifier les images (choix)
-            return (<div className={classname} onClick={this.handleClick}>{this.props.itemValue.author}</div>); 
-        },
-
-        getInitialState : function () {
-            return {selected : false };
-        },
-
-        handleClick : function () {
-            this.props.whenClick(this.props.itemValue);
-            this.setState({selected : true});
-        }
-    });
-              
-
-    var Score = React.createClass({
-
-        render : function () {
-            //mettre la boucle ici pour changer les quotes 
-            //on itere sur quote
-			if(count<=1){
-			 count = count + 1;
-			 return (<div>
-                la replique de {this.props.letter.author} est {this.props.letter.quote} 
-            </div>);
-			
-			}if(count===2){
-			 count = count + 1;
-			 return (<div>
-                la replique de {this.props.letter.author} est {this.props.letter.quote1} 
-            </div>);
-			}if(count===3){
-			 count = count + 1;
-			 return (<div>
-                la replique de {this.props.letter.author} est {this.props.letter.quote2} 
-            </div>);
-			}if(count===4){
-			 count = count + 1;
-			 return (<div>
-                la replique de {this.props.letter.author} est {this.props.letter.quote3} 
-            </div>);
-			}else{
-			count=1;
-			 return (<div>
-                la replique de {this.props.letter.author} est {this.props.letter.quote} 
-            </div>);
+//Selectionne la citation
+function GetQuote(author) 
+{
+var rnd = Math.floor((Math.random() * 11));
+var end = 0;
+	while(!end)
+		{
+			if(quotes[rnd].author.indexOf(author)>-1)
+			{
+				end = 1;
+				console.log(quotes[rnd].author);
 			}
-           
-        },
-
-    });
-
-
-    React.render(<Tree />, document.getElementById('root'));
-
-    </script>
-</body>
+			else
+			{
+				rnd = Math.floor((Math.random() * 11));
+			}
+		}
+		console.log(quotes[rnd].quote);
+		ReactDOM.render(<h2>{quotes[rnd].quote}</h2>, document.getElementById('qcontainer'));
+		ReactDOM.render(<h2>{quotes[rnd].author}</h2>, document.getElementById('acontainer'));}
+		
+		//gere l'affichage lors des click
+		
+		//cas aleatoire
+	var Random = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getrandquote(); },
+      render: function() { return (<p onClick={this.handleClick}>Random quote</p>);}});
+	  
+	  //Cas click sur image
+	var Yoda = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Yoda"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Yoda</h4>);}});
+    var Obiwan = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Obi-Wan-Kenobi"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Obi-Wan</h4>);}});
+    var Darthvader = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Darth Vader"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Darth Vader</h4>);}});
+    var Leia = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Princess leila"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Leia</h4>);}});
+    var Palpatine = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Senator palpatine"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Palpatine</h4>);}});
+    var Dooku = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Count Dooku"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Count Dooku</h4>);}});
+    var Qui = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { GetQuote("- Qui-Gon Jinn"); },
+      render: function() { return (<h4 onClick={this.handleClick}>Qui-Gon Jinn</h4>);}});
+	  
+	  //Assigne la precedente variable de gauche et l'id du bouton concerner dans le DOM
+      ReactDOM.render(<Random />, document.getElementById('random'));
+      ReactDOM.render(<Yoda />, document.getElementById('yoda'));
+      ReactDOM.render(<Obiwan />, document.getElementById('obiwan'));
+      ReactDOM.render(<Leia />, document.getElementById('leia'));
+      ReactDOM.render(<Darthvader />, document.getElementById('darthvader'));
+      ReactDOM.render(<Palpatine />, document.getElementById('palpatine'));
+      ReactDOM.render(<Dooku />, document.getElementById('dooku'));
+	  ReactDOM.render(<Qui />, document.getElementById('qui1'));
+ </script>
+  </body>
 </html>
